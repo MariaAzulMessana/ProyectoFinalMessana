@@ -118,7 +118,7 @@ export default function Checkout() {
   );
 }
 
-// ===== Estilos =====
+// Estilos
 const styles = {
   container: {
     padding: "30px",

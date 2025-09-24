@@ -15,18 +15,21 @@ export default function ItemListContainer() {
     fetchProducts();
   }, []);
 
-return (
-  <div className="container my-4">
-    {/* ===== TÍTULO DE LA PÁGINA ===== */}
-    <h1 className="catalog-title text-center mb-4">Tu Tienda de Zapatillas Online</h1>
+  if (loading) return <p className="text-center mt-4">Cargando productos...</p>;
+  if (!products.length) return <p className="text-center mt-4">No hay productos disponibles.</p>;
 
-    <div className="row g-4">
-      {products.map((p) => (
-        <div key={p.id} className="col-sm-6 col-md-4 col-lg-3">
-          <Item product={p} />
-        </div>
-      ))}
+
+  return (
+    <div className="container my-4">
+      <h1 className="catalog-title text-center mb-4">Tu Tienda de Zapatillas Online</h1>
+
+      <div className="row g-4">
+        {products.map((p) => (
+          <div key={p.id} className="col-sm-6 col-md-4 col-lg-3">
+            <Item product={p} />
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 }

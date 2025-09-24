@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <div>
-      {/* ===== NAVBAR ===== */}
+      {/* NAVBAR */}
       <header>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
@@ -42,15 +42,15 @@ export default function App() {
         </nav>
       </header>
 
-      {/* ===== WIDGET CARRITO ===== */}
+      {/* WIDGET CARRITO */}
       {location.pathname !== "/cart" && <CartWidget />}
 
-      {/* ===== RUTAS ===== */}
+     
       <Routes>
         <Route path="/" element={<ItemListContainer />} />
         <Route path="/item/:id" element={<ItemDetailContainer />} />
         <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </div>
   );

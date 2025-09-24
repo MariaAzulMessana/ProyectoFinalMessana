@@ -8,7 +8,7 @@ export const createOrder = async (orderData) => {
       ...orderData,
       createdAt: serverTimestamp()
     });
-    return docRef.id; // devuelve el ID de la orden generada
+    return docRef.id;
   } catch (error) {
     console.error("Error creando la orden:", error);
     throw error;
