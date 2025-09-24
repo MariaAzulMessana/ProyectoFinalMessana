@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { CartContext } from "../context/CartContext";
@@ -8,14 +8,15 @@ import ItemCount from "./ItemCount";
 export default function ItemDetailContainer() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // <- importante
+  const [added, setAdded] = useState(false);     // <- importante
 
   const { addItem } = useContext(CartContext);
 
   const handleAdd = (quantity) => {
     if (!product) return;
-    console.log("Agregando al carrito:", product, quantity);
     addItem(product, quantity);
+    setAdded(true); // <- oculta ItemCount y muestra botón
   };
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function ItemDetailContainer() {
       <p>{product.description}</p>
       <p className="price">Precio: ${product.price}</p>
       <p>Stock: {product.stock}</p>
+
       {!added ? (
         <ItemCount stock={product.stock} onAdd={handleAdd} />
       ) : (

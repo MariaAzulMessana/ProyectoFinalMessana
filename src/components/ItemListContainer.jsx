@@ -5,19 +5,25 @@ import { db } from "../firebase/firebaseConfig";
 
 export default function ItemListContainer() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // <- importante
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const querySnapshot = await getDocs(collection(db, "products"));
-      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setProducts(data);
+      try {
+        const querySnapshot = await getDocs(collection(db, "products"));
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProducts(data);
+      } catch (error) {
+        console.error("Error al cargar productos:", error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProducts();
   }, []);
 
   if (loading) return <p className="text-center mt-4">Cargando productos...</p>;
   if (!products.length) return <p className="text-center mt-4">No hay productos disponibles.</p>;
-
 
   return (
     <div className="container my-4">
