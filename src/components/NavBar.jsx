@@ -22,13 +22,13 @@ export default function NavBar() {
               <Link className="nav-link" to="/">Inicio</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/category/sneakers">Sneakers</Link>
+              <Link className="nav-link" to="/category/Sneakers">Sneakers</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/category/running">Running</Link>
+              <Link className="nav-link" to="/category/Running">Running</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/category/lifestyle">Lifestyle</Link>
+              <Link className="nav-link" to="/category/Lifestyle">Lifestyle</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/cart">Carrito 🛒</Link>
